@@ -1,17 +1,13 @@
 'use strict';
 
 import {combineReducers} from 'redux';
-import * as reducers from '../components/**/reducer.js';
+import applicationState from "../components/application/reducer";
 
-let reduxs = {};
-Object.keys(reducers).forEach((key) => {
+export default function createReducer(injectedReducers = {}) {
 
-    let name = key.replace('views$', '')
-        .replace('widgets$', '')
-        .toLowerCase();
-    reduxs[`${name}State`] = reducers[key];
-});
+    return combineReducers({
 
-const combination = combineReducers(reduxs);
-
-export default combination;
+        applicationState: applicationState,
+        ...injectedReducers
+    });
+}

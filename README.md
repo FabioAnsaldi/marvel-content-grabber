@@ -52,3 +52,8 @@ $ yarn run test
 ```
 ### Contributing
 Feel free to make changes to the template files and to the document files.
+
+### References
+[Dynamically load redux reducers with react router 4](https://stackoverflow.com/questions/49988229/dynamically-load-redux-reducers-with-react-router-4)
+
+[react-boilerplate](https://github.com/react-boilerplate)

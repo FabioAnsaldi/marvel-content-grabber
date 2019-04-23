@@ -1,7 +1,7 @@
 'use strict';
 
 import {createStore, applyMiddleware} from 'redux';
-import combination from './index';
+import createReducer from './index';
 import {createLogger} from 'redux-logger';
 
 const logger = createLogger({
@@ -11,13 +11,14 @@ const logger = createLogger({
         return process.env.NODE_ENV !== 'production';
     }
 });
-const store = createStore(combination, applyMiddleware(logger));
+const store = createStore(createReducer(), applyMiddleware(logger));
+store.injectedReducers = {};
 
 if (module.hot) {
     // Enable Webpack hot module replacement for combiner
     module.hot.accept('../combiner', () => {
 
-        const nextReducer = combination;
+        const nextReducer = createReducer();
         store.replaceReducer(nextReducer);
     });
 }
