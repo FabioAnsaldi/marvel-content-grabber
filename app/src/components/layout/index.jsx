@@ -35,7 +35,7 @@ export class Layout extends Component {
             <div>
                 <header>
                     <Suspense fallback={<div></div>}>
-                        <Topbar/>
+
                     </Suspense>
                 </header>
                 <main>
@@ -64,4 +64,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default withRouter(compose(addTopbarReducer, connect(mapStateToProps)(Layout)));
+export default withRouter( connect(mapStateToProps)(Layout));
