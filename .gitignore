@@ -62,6 +62,3 @@ typings/
 
 # WebStorn Editor files
 .idea/
-
-#Custom config
-config/
