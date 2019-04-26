@@ -1,6 +1,22 @@
 {
+  "app": {
+    "config": "./config/app.config.json"
+  },
+  "database": {
+    "address": "localhost",
+    "port": "3000",
+    "user": "root",
+    "password": ""
+  },
   "web": {
     "address": "localhost",
     "port": "8080"
+  },
+  "marvel": {
+    "address": "gateway.marvel.com",
+    "port": "443",
+    "path": "/v1/public",
+    "publicKey": "4c4123cf4dee41ba852d6788801480bc",
+    "privateKey": "72c1b38d1256e44373387fbfea1d3a1f7c1d3986"
   }
 }

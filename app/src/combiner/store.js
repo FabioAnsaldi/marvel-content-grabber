@@ -1,8 +1,9 @@
 'use strict';
 
-import {createStore, applyMiddleware} from 'redux';
-import createReducer from './index';
+import {applyMiddleware} from 'redux';
+import {createStore} from 'redux-dynamic-reducer';
 import {createLogger} from 'redux-logger';
+import createReducer from './index';
 
 const logger = createLogger({
 
