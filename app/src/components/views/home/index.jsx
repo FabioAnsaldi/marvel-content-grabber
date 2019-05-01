@@ -10,16 +10,11 @@ export class Home extends Component {
     render() {
 
         return (
-            <div>
-                <Grid container spacing={24}>
-                    <Grid item xs={12}>
-                        <h1> Welcome to the Time Tracking project</h1>
-                        <p>Navigate the <b>Menu</b> and go to <b>Tracking</b> page</p>
-                        <p>You will find little widget you can <b>create</b> a nwe project or <b>start</b> tracking the time spent to the project</p>
-                        <p><b>Enjoy it!</b></p>
-                    </Grid>
-                </Grid>
-            </div>
+            <Grid item xs={12}>
+                <h1> Welcome to the Marvel API project</h1>
+                <p>Navigate the <b>Menu</b> and go to <b>Characters</b> page</p>
+                <p><b>Enjoy it!</b></p>
+            </Grid>
         );
     }
 }

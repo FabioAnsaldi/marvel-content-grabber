@@ -2,7 +2,7 @@
 
 const history = require('connect-history-api-fallback');
 const {Server} = require("./lib/Server");
-const config = require('./config/app.config.json');
+const config = `${process.env.SERVER_CONFIG.app.config}`;
 
 const bundleRegex = new RegExp(`^\\/\\d+\\.(${config.app.bundle.replace('.js', '')})\\..+`);
 const historyOption = {

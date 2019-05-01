@@ -3,14 +3,29 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {compose} from 'redux';
+import axios from 'axios';
+import * as actions from './actions';
 import Layout from '../layout/index.jsx';
+import store from '../../combiner/store';
+import layoutState from '../../components/layout/reducer';
 
-import layoutState from '../layout/reducer';
-import injectReducer from "../../combiner/injectReducer";
-
+store.attachReducers({layoutState});
 
 export class Application extends Component {
+
+    componentWillMount() {
+
+        axios({
+
+            method: 'get',
+            baseURL: `http://${process.env.SERVER_CONFIG.database.address}:${process.env.SERVER_CONFIG.database.port}`,
+            url: '/routes',
+            timeout: 500,
+        }).then((response) => {
+
+            this.props.dispatch(actions.setRoutes(response.data));
+        });
+    }
 
     render() {
 
@@ -20,18 +35,12 @@ export class Application extends Component {
     }
 }
 
-const addLayoutReducer = injectReducer({
-
-    key: 'layoutState',
-    reducer: layoutState,
-});
-
 function mapStateToProps(state) {
-    console.log(state);
+
     return {
 
         applicationState: state.applicationState
     };
 }
 
-export default withRouter(compose(addLayoutReducer, connect(mapStateToProps)(Application)));
+export default withRouter(connect(mapStateToProps)(Application));

@@ -3,22 +3,23 @@
 import React, {Component, lazy, Suspense} from 'react';
 import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {compose} from 'redux';
-import injectReducer from '../../combiner/injectReducer';
-import topbarState from '../widgets/topbar/reducer'
+import store from '../../combiner/store';
+import topbarState from '../widgets/topbar/reducer';
 
 const Topbar = lazy(() => import('../widgets/topbar/index.jsx'));
+
+store.attachReducers({topbarState});
 
 export class Layout extends Component {
 
     render() {
 
-        /*const defaultView = this.props.applicationState.routes.reduce((accumulator, current, i) => {
+        const defaultView = this.props.applicationState.routes.reduce((accumulator, current, i) => {
 
-             return current.default ? (<Redirect to={`${current.path}`}/>) : accumulator;
-         }, null);*/
+            return current.default ? (<Redirect to={`${current.path}`}/>) : accumulator;
+        }, null);
 
-        /*const viewsList = (
+        const viewsList = (
             <Suspense fallback={<div></div>}>
                 <Switch>
                     {this.props.applicationState.routes.map((obj, i) => {
@@ -29,17 +30,17 @@ export class Layout extends Component {
                     {defaultView}
                 </Switch>
             </Suspense>
-        );*/
+        );
 
         return (
             <div>
                 <header>
                     <Suspense fallback={<div></div>}>
-
+                        <Topbar/>
                     </Suspense>
                 </header>
                 <main>
-                    {/*viewsList*/}
+                    {viewsList}
                 </main>
                 <footer>
                     <p>Powered by React + Redux</p>
@@ -48,12 +49,6 @@ export class Layout extends Component {
         );
     }
 }
-
-const addTopbarReducer = injectReducer({
-
-    key: 'topbarState',
-    reducer: topbarState,
-});
 
 function mapStateToProps(state) {
 
@@ -64,4 +59,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default withRouter( connect(mapStateToProps)(Layout));
+export default withRouter(connect(mapStateToProps)(Layout));
