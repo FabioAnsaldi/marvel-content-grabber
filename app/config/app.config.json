@@ -5,5 +5,12 @@
     "build": "app/dist",
     "publicPath": "/",
     "bundle": "bundle.js"
+  },
+  "marvel": {
+    "address": "gateway.marvel.com",
+    "port": "443",
+    "path": "/v1/public",
+    "publicKey": "4c4123cf4dee41ba852d6788801480bc",
+    "hash": "424a508e10e4bca151e05998224e8ca0"
   }
 }

@@ -4,8 +4,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import Grid from "@material-ui/core/Grid";
-import Paper from '@material-ui/core/Paper';
-import Typography from "@material-ui/core/Typography";
 
 export class Home extends Component {
 
@@ -13,7 +11,7 @@ export class Home extends Component {
 
         return (
             <Grid item xs={12}>
-                <h1> Welcome to the Time Marvel project</h1>
+                <h1> Welcome to the Marvel API project</h1>
                 <p>Navigate the <b>Menu</b> and go to <b>Characters</b> page</p>
                 <p><b>Enjoy it!</b></p>
             </Grid>

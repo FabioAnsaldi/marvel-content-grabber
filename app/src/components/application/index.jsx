@@ -18,14 +18,13 @@ export class Application extends Component {
         axios({
 
             method: 'get',
-            baseURL: `http://${process.env.API_URL.database.address}:${process.env.API_URL.database.port}`,
+            baseURL: `http://${process.env.SERVER_CONFIG.database.address}:${process.env.SERVER_CONFIG.database.port}`,
             url: '/routes',
             timeout: 500,
-        })
-            .then((response) => {
+        }).then((response) => {
 
-                this.props.dispatch(actions.setRoutes(response.data));
-            });
+            this.props.dispatch(actions.setRoutes(response.data));
+        });
     }
 
     render() {

@@ -37,7 +37,8 @@ module.exports = {
 
             'process.env': {
 
-                API_URL: JSON.stringify(appConfig)
+                SERVER_CONFIG: JSON.stringify(appConfig),
+                API_MARVEL: JSON.stringify(config.marvel)
             },
         })
     ],
