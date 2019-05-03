@@ -11,6 +11,15 @@ export const resetCharacters = () => {
     }, initialState);
 };
 
+export const setResponse = (input) => {
+
+    return {
+
+        type: TYPES.SET_RESPONSE,
+        response: input
+    };
+};
+
 export const setError = (input) => {
 
     return {

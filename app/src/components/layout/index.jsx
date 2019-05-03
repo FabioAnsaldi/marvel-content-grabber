@@ -5,6 +5,7 @@ import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import store from '../../combiner/store';
 import topbarState from '../widgets/topbar/reducer';
+import * as reducers from '../views/**/reducer.js';
 
 const Topbar = lazy(() => import('../widgets/topbar/index.jsx'));
 
@@ -25,6 +26,7 @@ export class Layout extends Component {
                     {this.props.applicationState.routes.map((obj, i) => {
 
                         let View = lazy(() => import(`../views/${obj.viewFolderName}/index.jsx`));
+                        store.attachReducers(reducers);
                         return <Route key={i} exact path={obj.path} component={props => <View {...props} />}/>
                     })}
                     {defaultView}

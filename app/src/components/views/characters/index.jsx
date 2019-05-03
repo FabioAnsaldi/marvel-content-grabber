@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import Grid from '@material-ui/core/Grid';
 import axios from "axios";
-import * as actions from "../../application/actions";
+import * as actions from "./actions";
 
 export class Characters extends Component {
 
@@ -24,11 +24,13 @@ export class Characters extends Component {
             timeout: 3000,
         }).then((response) => {
 
-            console.log(response.data)
+            //this.props.dispatch(actions.setResponse(response));
         });
     }
 
     render() {
+
+        //const response = this.props.charactersState.response;
 
         return (
             <Grid item xs={12}>
