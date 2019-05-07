@@ -8,8 +8,8 @@
     "db": "json-server --watch ./database/index.json",
     "dev": "webpack-dev-server --config ./app/config/webpack.dev.js",
     "debug": "node $NODE_DEBUG_OPTION node_modules/.bin/webpack-dev-server --config ./app/config/webpack.dev.js",
-    "start": "node server/index.js",
-    "test": "mocha || true"
+    "start": "yarn run db & node server/index.js",
+    "test": "mocha --recursive || true"
   },
   "repository": "https://github.com/FabioAnsaldi/marvel-content-grabber.git",
   "author": "Fabio Ansaldi",
