@@ -3,15 +3,26 @@
 import React, {Component, lazy, Suspense} from 'react';
 import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import store from '../../combiner/store';
-import topbarState from '../widgets/topbar/reducer';
 import * as reducers from '../views/**/reducer.js';
+import topbarState from '../widgets/topbar/reducer';
+import store from '../../combiner/store';
 
 const Topbar = lazy(() => import('../widgets/topbar/index.jsx'));
-
 store.attachReducers({topbarState});
 
 export class Layout extends Component {
+
+    componentWillMount() {
+
+        this.props.applicationState.routes.map((obj, i) => {
+
+            let viewReducer = `{"${obj.viewFolderName}": {}}`;
+
+            viewReducer = JSON.parse(viewReducer);
+            viewReducer[`${obj.viewFolderName}State`] = reducers[obj.viewFolderName];
+            store.attachReducers(viewReducer);
+        });
+    }
 
     render() {
 
@@ -21,12 +32,12 @@ export class Layout extends Component {
         }, null);
 
         const viewsList = (
-            <Suspense fallback={<div></div>}>
+            <Suspense fallback={<div>Loading ...</div>}>
                 <Switch>
                     {this.props.applicationState.routes.map((obj, i) => {
 
                         let View = lazy(() => import(`../views/${obj.viewFolderName}/index.jsx`));
-                        store.attachReducers(reducers);
+
                         return <Route key={i} exact path={obj.path} component={props => <View {...props} />}/>
                     })}
                     {defaultView}
@@ -37,7 +48,7 @@ export class Layout extends Component {
         return (
             <div>
                 <header>
-                    <Suspense fallback={<div></div>}>
+                    <Suspense fallback={<div>Loading ...</div>}>
                         <Topbar/>
                     </Suspense>
                 </header>

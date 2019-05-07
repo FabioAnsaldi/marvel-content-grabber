@@ -1,14 +1,14 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React, {Component, lazy, Suspense} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 import * as actions from './actions';
-import Layout from '../layout/index.jsx';
 import store from '../../combiner/store';
 import layoutState from '../../components/layout/reducer';
 
+const Layout = lazy(() => import('../layout/index.jsx'));
 store.attachReducers({layoutState});
 
 export class Application extends Component {
@@ -20,7 +20,7 @@ export class Application extends Component {
             method: 'get',
             baseURL: `http://${process.env.SERVER_CONFIG.database.address}:${process.env.SERVER_CONFIG.database.port}`,
             url: '/routes',
-            timeout: 500,
+            timeout: 3000,
         }).then((response) => {
 
             this.props.dispatch(actions.setRoutes(response.data));
@@ -30,7 +30,9 @@ export class Application extends Component {
     render() {
 
         return (
-            <Layout/>
+            <Suspense fallback={<div>Loading ...</div>}>
+                <Layout/>
+            </Suspense>
         );
     }
 }
