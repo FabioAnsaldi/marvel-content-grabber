@@ -38,7 +38,7 @@ export class Characters extends Component {
     render() {
 
         const response = this.props.charactersState && this.props.charactersState.response;
-        const results = response.data && response.data.data && response.data.data.results || [];
+        const results = response && response.data && response.data.data && response.data.data.results || [];
         const listItem = (
             <Suspense fallback={<div>Loading ...</div>}>
                 {results.map((obj, i) => {
