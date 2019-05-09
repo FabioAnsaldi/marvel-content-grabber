@@ -1,6 +1,7 @@
 let actions_types = [
     'RESET_STATE',
     'SET_RESPONSE',
+    'SET_ROWSFORPAGE',
     'SET_ERROR'
 ];
 

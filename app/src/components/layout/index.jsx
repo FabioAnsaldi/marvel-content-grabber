@@ -55,7 +55,7 @@ function mapStateToProps(state) {
     return {
 
         layoutState: state.layoutState,
-        applicationState: state.applicationState,
+        applicationState: state.applicationState
     };
 }
 

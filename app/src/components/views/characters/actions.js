@@ -20,6 +20,15 @@ export const setResponse = (input) => {
     };
 };
 
+export const setRowsForPage = (input) => {
+
+    return {
+
+        type: TYPES.SET_ROWSFORPAGE,
+        response: input
+    };
+};
+
 export const setError = (input) => {
 
     return {
